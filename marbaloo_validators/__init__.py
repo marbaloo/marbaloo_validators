@@ -21,12 +21,12 @@ class Plugin(plugins.SimplePlugin):
 class Tool(cherrypy.Tool):
     def __init__(self):
         cherrypy.Tool.__init__(self, 'on_start_resource',
-                               self.set_dogpile_tool,
+                               self.set_tool,
                                priority=20)
 
     def _setup(self):
         cherrypy.Tool._setup(self)
 
     @staticmethod
-    def set_dogpile_tool():
+    def set_tool():
         cherrypy.request.validators = cherrypy.engine.publish('get-validators').pop()
